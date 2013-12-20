@@ -15,7 +15,7 @@ describe "the signup process" do
       fill_in "password", :with => "password"
       click_on "Sign Up"
 
-      expect(page).to have_content "Homepage"
+      expect(page).to have_content "testing_username"
     end
 
   end
