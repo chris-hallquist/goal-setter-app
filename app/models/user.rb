@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
 
   before_validation :reset_session_token
 
+  has_many :goals
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
   def is_password?(password)
-    BCrypy::password.new(self.password_digest).is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def reset_session_token
@@ -22,10 +24,9 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
-
-  def find_by_credentials(params)
+  def self.find_by_credentials(params)
     u = User.find_by_username(params[:username])
-    if u && u.find_by_password(params[:password])
+    if u && u.is_password?(params[:password])
       u
     else
       nil

@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%=flash[:errors]%>
+<% if logged_in? %>
+	<%= button_to "Sign Out", "/session", method: :delete %>
+<% end %>
 
 <%= yield %>
 

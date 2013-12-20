@@ -1,0 +1,23 @@
+<h1>
+	<%= @goal.description %>
+</h1>
+
+<form action="/goals/<%= @goal.id %>" method="post">
+	<input type="hidden" name="_method" value="PUT">
+
+	<label for="description">Goal Description</label>
+	<input
+		type="text"
+		id="description"
+		name="goal[description]"
+		value="<%= @goal.description %>"></input>
+	<br />
+	<input
+		type="checkbox"
+		name="goal[private]"
+		value="true"
+		id="private"
+		checked="<%= @goal.private %>">Private
+	<br />
+	<input type="submit" value="Save Edit"></input>
+</form>

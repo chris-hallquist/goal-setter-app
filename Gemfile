@@ -21,9 +21,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'launchy'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do

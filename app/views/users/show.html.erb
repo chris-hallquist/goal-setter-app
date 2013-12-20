@@ -1,3 +1,23 @@
 <h1>Homepage</h1>
 
 <%= current_user.username %>
+
+<h1>Goals</h1>
+<ul>
+<% @user.goals.each do |goal| %>
+	<li>
+		<%= goal.description %>
+		<%= button_to "Edit Goal", edit_goal_url(goal), :method => :get %>
+		<%= button_to "Delete Goal",  "/goals/#{goal.id}", method: :delete%>
+	</li>
+<% end %>
+</ul>
+
+<form action="/goals" method="post">
+	<label for="description">Goal Description</label>
+	<input type="text" id="description" name="goal[description]"></input>
+	<br />
+	<input type="checkbox" name="goal[private]" value="true" id="private">Private
+	<br />
+	<input type="submit" value="Create Goal"></input>
+</form>
