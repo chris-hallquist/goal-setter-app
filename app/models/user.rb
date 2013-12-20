@@ -25,5 +25,10 @@ class User < ActiveRecord::Base
 
   def find_by_credentials(params)
     u = User.find_by_username(params[:username])
+    if u && u.find_by_password(params[:password])
+      u
+    else
+      nil
+    end
   end
 end
