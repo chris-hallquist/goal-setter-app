@@ -1,2 +1,7 @@
 <%= @goal.description %>
-<%= button_to "Give Cheer", "/goals/#{@goal.id}/cheers" %>
+
+<% if already_gave_cheer? %>
+	<%= button_to "Give Cheer", "/goals/#{@goal.id}/cheers" %>
+<% else %>
+	<p>You're cheering this goal!</p>
+<% end %>
