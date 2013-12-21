@@ -1,6 +1,7 @@
 class GoalsController < ApplicationController
   def create
     params[:goal][:user_id] = current_user.id
+    params[:goal][:completed] = false
     @goal = Goal.new(params[:goal])
     if @goal.save
       redirect_to user_url(@goal.user)
@@ -30,5 +31,10 @@ class GoalsController < ApplicationController
     user = goal.user
     goal.delete
     redirect_to user_url(user)
+  end
+
+  def show
+    @goal = Goal.find_by_id(params[:id])
+    render :show
   end
 end

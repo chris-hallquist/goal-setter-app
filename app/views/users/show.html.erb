@@ -5,11 +5,14 @@
 <h1>Goals</h1>
 <ul>
 <% @user.goals.each do |goal| %>
-	<li>
-		<%= goal.description %>
-		<%= button_to "Edit Goal", edit_goal_url(goal), :method => :get %>
-		<%= button_to "Delete Goal",  "/goals/#{goal.id}", method: :delete%>
-	</li>
+	<% if goal.user == current_user || !goal.private %>
+		<li>
+			<%= goal.description %>
+			<%= "[x]" if goal.completed? %>
+			<%= button_to "Edit Goal", edit_goal_url(goal), :method => :get %>
+			<%= button_to "Delete Goal",  "/goals/#{goal.id}", method: :delete%>
+		</li>
+	<% end %>
 <% end %>
 </ul>
 

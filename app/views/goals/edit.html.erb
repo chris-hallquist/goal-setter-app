@@ -19,5 +19,13 @@
 		id="private"
 		checked="<%= @goal.private %>">Private
 	<br />
+	<input
+		type="checkbox"
+		name="goal[completed]"
+		value="true"
+		id="complete"
+		checked="<%= @goal.completed %>">Completed?
+	<br />
+
 	<input type="submit" value="Save Edit"></input>
 </form>

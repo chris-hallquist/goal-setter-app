@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   before_validation :reset_session_token
 
   has_many :goals
+  has_many :cheers
 
   def password=(password)
     @password = password
